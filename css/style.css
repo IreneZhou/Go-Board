@@ -1,0 +1,375 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background: #634536;
+}
+
+.goGame {
+  display: inline-block;
+  cursor: pointer;
+}
+.goGame div {
+  margin: 0;
+  padding: 0;
+}
+.goGame .goControls {
+  background-color: #E9C372;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-left: 7px solid rgba(200, 200, 200, 0.5);
+  border-top: 7px solid rgba(200, 200, 200, 0.2); 
+  border-right: 7px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 7px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;   /*  none */
+}
+.goGame .goControls .controlRow div {
+  display: inline-block;
+  border: 1px solid #522;
+  box-shadow: 1px 1px 1px #522;
+  margin: 2px;
+  padding: 3px;
+}
+.goGame .goControls .controlRow div:hover {
+  background-color: #ffea89;
+}
+.goGame .goControls .treeBox {
+  display: block;
+  border: 1px solid #522;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.goGame .goControls .treeBox div {
+  white-space: nowrap;
+}
+.goGame .goControls .treeBox .tree {
+  position: relative;
+  padding: 10px;
+}
+.goGame .goControls .treeBox .tree .line {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  height: 0px;
+  border: 1px solid black;
+  z-index: 1;
+  box-shadow: 1px 1px 1px #404040;
+}
+.goGame .goControls .treeBox .tree .line.active {
+  border-color: blue;
+  box-shadow: 1px 1px 1px white;
+}
+.goGame .goControls .treeBox .tree .branches {
+  display: inline-block;
+}
+.goGame .goControls .treeBox .tree .branch {
+  vertical-align: top;
+  display: block;
+}
+.goGame .goControls .treeBox .tree .branch .stone {
+  vertical-align: top;
+  position: relative;
+  top: 0px;
+  display: inline-block;
+  z-index: 10;
+  margin-left: 10px;   /*15px*/
+  margin-bottom: 5px;
+}
+.goGame .goControls .treeBox .tree .branch .stone.white {
+  left: 0;
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040 , inset -3px -3px 5px gray;
+  width: 20px;        
+  height: 20px;       
+}
+.goGame .goControls .treeBox .tree .branch .stone.black {
+  box-sizing: border-box;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040;
+  background-image: -webkit-radial-gradient(40% 40%, circle closest-corner, #404040 0%, transparent 90%);
+  background-image: -moz-radial-gradient(40% 40%, circle closest-side, #404040 0%, transparent 90%);
+  width: 20px;
+  height: 20px;
+}
+.goGame .goControls .treeBox .tree .branch .stone.start {
+  background-color: #E9C372;
+  border-radius: 50%;
+  border: 1px solid black;
+  box-shadow: 1px 1px 1px #404040;
+  width: 20px;
+  height: 20px;
+}
+.goGame .goControls .treeBox .tree .branch .stone.current {
+  border: 2px solid red;
+  box-shadow: 1px 1px 1px black;
+}
+.goGame .goPlayers {
+  background-color: #E9C372;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-left: 7px solid rgba(200, 200, 200, 0.5);
+  border-top: 7px solid rgba(200, 200, 200, 0.2);
+  border-right: 7px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 7px solid rgba(0, 0, 0, 0.5);
+  font-size: 0;
+
+  position: absolute;
+  top: 500px;
+  right: 100px;
+  width: 250px;
+}
+.goGame .goPlayers .stats {
+  width: 50%;
+  padding: 5px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.goGame .goPlayers .stats:first-child {
+  border-right: 1px solid #522;
+}
+.goGame .goPlayers .stats .pass {
+  vertical-align: top;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 3px;
+  display: inline-block;
+  font-size: 22px;
+  border: 1px solid #522;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #522;
+}
+.goGame .goPlayers .stats .captures {
+  font-size: 22px;
+  margin-right: 10px;
+  display: inline-block;
+  float: right;
+}
+.goGame .goPlayers .stats .stone {
+  display: inline-block;
+}
+.goGame.white .goPlayers .white.stats {
+  background-color: #ffea89;
+}
+.goGame.black .goPlayers .black.stats {
+  background-color: #ffea89;
+}
+.goGame .goPlayers .white.stats .stone:after {
+  left: 0;
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040 , inset -3px -3px 5px gray;
+  width: 30px;
+  height: 30px;
+  content: '';
+  display: inline-block;
+}
+.goGame .goPlayers .black.stats .stone:after {
+  box-sizing: border-box;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040;
+  background-image: -webkit-radial-gradient(40% 40%, circle closest-corner, #404040 0%, transparent 90%);
+  background-image: -moz-radial-gradient(40% 40%, circle closest-side, #404040 0%, transparent 90%);
+  width: 30px;
+  height: 30px;
+  content: '';
+  display: inline-block;
+}
+.goGame .goBoard {
+  margin-top: 20px; 
+  margin-left: 300px;   
+  display: inline-block;
+  border: 1px solid #522;
+
+  /*background-color: #E9C372;*/
+  /*background: url(http://content.wallpapers-room.com/resolutions/1680x1050/W/Wallpapers-room_com___Wood_Wallpaper_by_Digital_Visions_Queenstown_1680x1050.png);
+  */
+
+  background-image: -moz-radial-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0)), url(http://xyzgoclub.com/images/goban.jpg);
+  background-image: -webkit-radial-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0)), url(http://xyzgoclub.com/images/goban.jpg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0)), url(http://xyzgoclub.com/images/goban.jpg);
+  -moz-box-shadow: 0 0 2em rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 2em rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 2em rgba(0, 0, 0, 0.5);
+
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+
+.goGame .labels {
+  color: #a67359;
+  font-family: Righteous;
+  font-size: 12px;
+  position: absolute;
+}
+
+.goGame .labels.horizontal.top {
+  margin-left: 327px;
+  letter-spacing: 20px;
+}
+
+.goGame .labels.horizontal.bottom {
+  letter-spacing: 20px;
+  left: 340px;
+  top: 602px;
+}
+
+.goGame .labels.vertical.left {
+  word-wrap: break-word;  
+  left: 285px;
+  top: 40px;
+}
+.goGame .labels.vertical.right {
+  word-wrap: break-word;  
+  left: 888px;
+  top: 40px;
+}
+
+
+
+.goGame.white .goBoard .cell:not(.black):not(.white):hover:after {
+  left: 0;
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040 , inset -3px -3px 5px gray;
+  opacity: 0.5;
+}
+.goGame.white .goBoard .cell:not(.black):not(.white):hover:before {
+  display: none;
+}
+.goGame.black .goBoard .cell:not(.black):not(.white):hover:after {
+  box-sizing: border-box;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040;
+  background-image: -webkit-radial-gradient(40% 40%, circle closest-corner, #404040 0%, transparent 90%);
+  background-image: -moz-radial-gradient(40% 40%, circle closest-side, #404040 0%, transparent 90%);
+  opacity: 0.5;
+}
+.goGame.black .goBoard .cell:not(.black):not(.white):hover:before {
+  display: none;
+}
+.goGame .goBoard .row {
+  font-size: 0px;
+}
+.goGame .goBoard .row .cell {
+  width: 30px;     /* 20px*/
+  height: 30px;   /* 21px*/
+  display: inline-block;
+  position: relative;
+}
+.goGame .goBoard .row .cell:after {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
+  background-color: #522;
+  width: 100%;
+  height: 1px;
+}
+.goGame .goBoard .row .cell:before {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: "";
+  background-color: #522;
+  width: 1px;
+  height: 100%;
+}
+.goGame .goBoard .row .cell:first-child:after {
+  width: 50%;
+  left: 50%;
+}
+.goGame .goBoard .row .cell:last-child:after {
+  width: 50%;
+  right: 50%;
+}
+.goGame .goBoard .row .cell.star {
+  background-image: -webkit-radial-gradient(center, circle closest-side, #522 20%, transparent 30%);
+  background-image: -moz-radial-gradient(center, circle closest-side, #522 20%, transparent 30%);
+}
+.goGame .goBoard .row .cell.dead:after {
+  opacity: 0.5;
+}
+.goGame .goBoard .row .cell.dead:before {
+  display: none;
+}
+.goGame .goBoard .row .cell.black:after {
+  box-sizing: border-box;
+  left: 0;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040;
+  background-image: -webkit-radial-gradient(40% 40%, circle closest-corner, #404040 0%, transparent 90%);
+  background-image: -moz-radial-gradient(40% 40%, circle closest-side, #404040 0%, transparent 90%);
+}
+.goGame .goBoard .row .cell.white:after {
+  left: 0;
+  box-sizing: border-box;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px #404040 , inset -3px -3px 5px gray;
+}
+.goGame .goBoard .row .cell.counted-black {
+  background-color: black;
+}
+.goGame .goBoard .row .cell.counted-white {
+  background-color: white;
+}
+.goGame .goBoard .row:first-child .cell:before {
+  height: 50%;
+  top: 50%;
+}
+.goGame .goBoard .row:last-child .cell:before {
+  height: 50%;
+  bottom: 50%;
+}
