@@ -237,25 +237,27 @@ body {
 }
 
 .goGame .labels.horizontal.top {
-  margin-left: 327px;
-  letter-spacing: 20px;
+  margin-left: 318px;
+  letter-spacing: 21px;
 }
 
 .goGame .labels.horizontal.bottom {
-  letter-spacing: 20px;
-  left: 340px;
+  letter-spacing: 21px;
+  left: 323px;
   top: 602px;
 }
 
 .goGame .labels.vertical.left {
   word-wrap: break-word;  
-  left: 285px;
-  top: 40px;
+  line-height: 15px;
+  left: 287px;
+  top: 26px;
 }
 .goGame .labels.vertical.right {
   word-wrap: break-word;  
+  line-height: 15px;
   left: 888px;
-  top: 40px;
+  top: 26px;
 }
 
 
